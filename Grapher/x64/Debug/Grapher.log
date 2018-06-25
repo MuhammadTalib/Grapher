@@ -1,0 +1,9 @@
+﻿Grapher.obj : error LNK2019: unresolved external symbol __imp_glutDisplayFunc referenced in function "public: __cdecl Grapher::Grapher(void)" (??0Grapher@@QEAA@XZ)
+Graphics.obj : error LNK2019: unresolved external symbol __imp_glutInitDisplayMode referenced in function "public: __cdecl Graphics::Graphics(char const *,int,int)" (??0Graphics@@QEAA@PEBDHH@Z)
+Graphics.obj : error LNK2019: unresolved external symbol __imp_glutInitWindowPosition referenced in function "public: __cdecl Graphics::Graphics(char const *,int,int)" (??0Graphics@@QEAA@PEBDHH@Z)
+Graphics.obj : error LNK2019: unresolved external symbol __imp_glutInitWindowSize referenced in function "public: __cdecl Graphics::Graphics(char const *,int,int)" (??0Graphics@@QEAA@PEBDHH@Z)
+Graphics.obj : error LNK2019: unresolved external symbol __imp___glutCreateWindowWithExit referenced in function glutCreateWindow_ATEXIT_HACK
+main.obj : error LNK2019: unresolved external symbol __imp___glutInitWithExit referenced in function glutInit_ATEXIT_HACK
+main.obj : error LNK2019: unresolved external symbol __imp_glutMainLoop referenced in function main
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Tools\MSVC\14.13.26128\lib\x64\glut32.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+C:\Users\Talib Waseem\source\repos\Grapher\x64\Debug\Grapher.exe : fatal error LNK1120: 7 unresolved externals
