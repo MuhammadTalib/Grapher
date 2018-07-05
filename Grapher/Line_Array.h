@@ -15,11 +15,16 @@ public:
 	void setcount(int count);
 	void setArray(StraightLine *Array);
 	void addline(StraightLine P);
+	void addline(StraightLine P, StraightLine Q, StraightLine R, StraightLine S);
 	void show();
+	void save(ofstream& o,string filename);
+	void deleteLineArray();
+	void deleteLine(int j);
 
 	friend ostream& operator <<(ostream& o, Line_Array& P);
 	friend istream& operator >>(istream& in, Line_Array& P);
 	Line_Array operator = (Line_Array& P);
+	Line_Array operator += (int add);
 
 	~Line_Array();
 private:

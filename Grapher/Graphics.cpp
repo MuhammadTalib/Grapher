@@ -57,10 +57,7 @@ void Graphics::drawcircle(int c, int r)
 }
 void Graphics::drawpoint(int x, int y)
 {
-	
-	glPointSize(3);
 	glBegin(GL_POINTS);
 	glVertex2i(x,y);
 	glEnd();
-	
 }

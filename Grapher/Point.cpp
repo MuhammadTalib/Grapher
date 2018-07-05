@@ -3,7 +3,7 @@
 #include<GL/glut.h>
 #include "Point.h"
 #include"Graphics.h"
-
+#include<fstream>
 Point::Point()
 {
 	this->x = 0;
@@ -61,18 +61,26 @@ void Point::show()
 	G.drawpoint(this->x, this->y);
 }
 
-void Point::operator=(Point P)
+void Point::save(ofstream& o,string filename)
+{
+	o.write((char*)&this->x, sizeof(this->x));
+	o.write((char*)&this->y, sizeof(this->y));
+}
+
+void Point::operator=(Point& P)
 {
 	this->x = P.x;
 	this->y = P.y;
 	this->name = P.name;
 }
+Point Point::operator+=(int add)
+{
+	this->x += add;
+	return *this;
+}
 ostream & operator<<(ostream & o, Point& P)
 {
-	Graphics G;
-	G.drawpoint(P.x, P.y);
-	return o << "Point "<<P.name<<endl<<"X is ="<<P.x<<endl << "Y is =" << P.y;
-	
+	return o << "Point "<<P.name<<endl<<"X is ="<<P.x-100<<endl << "Y is =" << P.y-100;
 }
 istream& operator>>(istream & in, Point &P)
 {
@@ -84,6 +92,11 @@ istream& operator>>(istream & in, Point &P)
 	cout << endl;
 	P.y += 100;
 	return in;
+}
+void Point::deletePoint()
+{
+	this->x = 0;
+	this->y = 0;
 }
 Point::~Point()
 {

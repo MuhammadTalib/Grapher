@@ -1,5 +1,5 @@
 #include "Line_Array.h"
-
+#include<fstream>
 
 Line_Array::Line_Array()
 {
@@ -70,7 +70,7 @@ void Line_Array::setArray(StraightLine * Array)
 
 void Line_Array::addline(StraightLine P)
 {
-	if (this->count < 6)
+	if (this->count <  this->total_lines)
 	{
 		this->Array[this->count] = P;
 		this->count++;
@@ -81,11 +81,26 @@ void Line_Array::addline(StraightLine P)
 	}
 }
 
+void Line_Array::addline(StraightLine P, StraightLine Q, StraightLine R, StraightLine S)
+{
+	this->addline(P);
+	this->addline(Q);
+	this->addline(R);
+	this->addline(S);
+}
+
 void Line_Array::show()
 {
 	for (int i = 0; i < this->count; i++)
 	{
 		this->Array[i].show();
+	}
+}
+void Line_Array::save(ofstream& o,string filename)
+{
+	for (int i = 0; i < this->count; i++)
+	{
+		this->Array[i].save(o,filename);
 	}
 }
 
@@ -101,8 +116,18 @@ Line_Array Line_Array::operator=(Line_Array & P)
 	return *this;
 }
 
+Line_Array Line_Array::operator+=(int add)
+{
+	for (int i = 0; i < this->count; i++)
+	{
+		this->Array[i] += add;
+	}
+	return *this;
+}
+
 Line_Array::~Line_Array()
 {
+	delete[]Array;
 }
 
 Line_Array Line_Array::increasesize()
@@ -115,12 +140,27 @@ Line_Array Line_Array::increasesize()
 
 ostream & operator<<(ostream & o, Line_Array & P)
 {
-	return o << "s";
-	// TODO: insert return statement here
+	for (int i = 0; i < P.count; i++)
+	{
+		cout << P.Array[i];
+	}
+	return o << "Printed";
 }
 
 istream & operator>>(istream & in, Line_Array & P)
 {
 	int s;
 	return in >> s;
+}
+void Line_Array::deleteLineArray()
+{
+	for (int i = 0; i < this->count; i++)
+	{
+		this->Array[i].deleteLine();
+	}
+}
+
+void Line_Array::deleteLine(int j)
+{
+	this->Array[j].deleteLine();
 }

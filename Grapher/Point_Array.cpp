@@ -1,6 +1,8 @@
 #pragma once
+#include<stdlib.h>
+#include<GL/glut.h>
 #include "Point_Array.h"
-
+#include <fstream>
 Point_Array::Point_Array()
 {
 	this->total_points = 6;
@@ -58,6 +60,7 @@ void Point_Array::set(Point * Array, int total_points, int count)
 
 void Point_Array::settotal_points(int total_points)
 {
+	this->Array = new Point[total_points];
 	this->total_points = total_points;
 }
 
@@ -73,7 +76,7 @@ void Point_Array::setArray(Point * Array)
 
 void Point_Array::addpoint(Point P)
 {
-	if (this->count < 6)
+	if (this->count < this->total_points)
 	{
 		this->Array[this->count] = P;
 		this->count++;
@@ -83,13 +86,25 @@ void Point_Array::addpoint(Point P)
 		this->increasesize();
 	}
 }
-
+void Point_Array::addpoint(Point P, Point Q, Point R, Point S)
+{
+	this->addpoint(P);
+	this->addpoint(Q);
+	this->addpoint(R);
+	this->addpoint(S);
+}
 void Point_Array::show()
 {
-	
 	for (int i=0; i < this->count; i++)
 	{
 		this->Array[i].show();
+	}
+}
+void Point_Array::save(ofstream& o,string filename)
+{
+	for (int i = 0; i < this->count; i++)
+	{
+		this->Array[i].save(o,filename);
 	}
 }
 
@@ -98,6 +113,15 @@ Point_Array Point_Array::operator=(Point_Array& P)
 	this->total_points = P.total_points;
 	this->count = P.count;
 	this->Array = P.Array;
+	return *this;
+}
+
+Point_Array Point_Array::operator+=(int add)
+{
+	for (int i=0; i < this->count; i++)
+	{
+		this->Array[i] += add;
+	}
 	return *this;
 }
 
@@ -115,6 +139,10 @@ Point_Array Point_Array::increasesize()
 	
 }
 
+void save(ofstream o, string filename)
+{
+}
+
 ostream & operator<<(ostream & o, Point_Array & P)
 {
 	for (int i = 0; i < P.count; i++)
@@ -128,4 +156,17 @@ istream & operator>>(istream & in, Point_Array & P)
 {
 	int s;
 	return in >> s;
+}
+void Point_Array::deletePointArray()
+{
+	for (int i = 0; i < this->count; i++)
+	{
+		this->Array[i].deletePoint();
+	}
+}
+void Point_Array::deletePoint(int j)
+{
+	
+	this->Array[j].deletePoint();
+	
 }

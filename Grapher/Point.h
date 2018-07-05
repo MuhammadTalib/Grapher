@@ -14,12 +14,15 @@ public:
 	void setx(int x);
 	void sety(int y);
 	void show();
+	void save(ofstream& o,string filename);
+	void deletePoint();
 
 	friend ostream& operator <<(ostream& o,Point& P);
 	friend istream& operator >>(istream& in, Point& P);
 
-	void operator = (Point P);
-	
+	void operator = (Point& P);
+	Point operator += (int add);
+
 	~Point();
 private:
 	int x;

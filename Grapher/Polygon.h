@@ -1,7 +1,7 @@
 #pragma once
-#include "Graph.h"
+#include "Shape.h"
 #include"StraightLine.h"
-class Polygon :public Graph
+class Polygon :public Shape
 {
 public:
 	Polygon();

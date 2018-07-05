@@ -16,12 +16,17 @@ public:
 	void settotal_points(int total_points);
 	void setcount(int count);
 	void setArray(Point *Array);
+	void addpoint(Point P, Point Q, Point R, Point S);
 	void addpoint(Point P);
 	void show();
+    void save(ofstream& o,string filename);
+	void deletePointArray();
+	void deletePoint(int j);
 
 	friend ostream& operator <<(ostream& o, Point_Array& P);
 	friend istream& operator >>(istream& in, Point_Array& P);
 	Point_Array operator = (Point_Array& P);
+	Point_Array operator += (int add);
 
 	~Point_Array();
 private:

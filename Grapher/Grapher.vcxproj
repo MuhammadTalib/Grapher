@@ -115,28 +115,28 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Graph.cpp" />
+    <ClCompile Include="Shape.cpp" />
     <ClCompile Include="Grapher.cpp" />
     <ClCompile Include="Graphics.cpp" />
-    <ClCompile Include="Graph_Array.cpp" />
+    <ClCompile Include="Shape_Array.cpp" />
     <ClCompile Include="Line_Array.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="Point_Array.cpp" />
     <ClCompile Include="Polygon.cpp" />
-    <ClCompile Include="Sheet.cpp" />
+    <ClCompile Include="Coordinate_System.cpp" />
     <ClCompile Include="StraightLine.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Graph.h" />
+    <ClInclude Include="Shape.h" />
     <ClInclude Include="Grapher.h" />
     <ClInclude Include="Graphics.h" />
-    <ClInclude Include="Graph_Array.h" />
+    <ClInclude Include="Shape_Array.h" />
     <ClInclude Include="Line_Array.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="Point_Array.h" />
     <ClInclude Include="Polygon.h" />
-    <ClInclude Include="Sheet.h" />
+    <ClInclude Include="Coordinate_System.h" />
     <ClInclude Include="StraightLine.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
