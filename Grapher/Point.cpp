@@ -1,22 +1,23 @@
-
 #include<stdlib.h>
+
 #include<GL/glut.h>
 #include "Point.h"
 #include"Graphics.h"
 #include<fstream>
+int myrandom(int m);
 Point::Point()
 {
 	this->x = 0;
-	this->name = "";
+	this->name = 'A';
 	this->y = 0;
 }
-Point::Point(int x, int y)
+Point::Point(float x, float y)
 {
 	this->x = x;
-	this->name = "";
+	this->name = 'A';
 	this->y = y;
 }
-Point::Point(string name, int x, int y)
+Point::Point(char name, float x, float y)
 {
 	this->x = x;
 	this->name = name;
@@ -29,42 +30,92 @@ Point::Point(const Point & P)
 	this->name = P.name;
 }
 
-int Point::getx()
+float Point::getx()
 {
 	return this->x;
 }
-int Point::gety()
+float Point::gety()
 {
 	return this->y;
 }
 
-void Point::set(int x, int y)
+void Point::set(float x, float y)
 {
 	this->x = x;
 	this->y = y;
 }
 
-void Point::setx(int x)
+void Point::setx(float x)
 {
 	this->x = x;
 }
 
-void Point::sety(int y)
+void Point::sety(float y)
 {
 	this->y = y;
 }
 
+void Point::setname(char name)
+{
+	this->name = name;
+}
 
 void Point::show()
 {
 	Graphics G;
+	glPointSize(2);
+	glColor3f(0, 1, 0);
 	G.drawpoint(this->x, this->y);
+	G.setcolor(0, 1, 0);
+}
+
+void Point::show(Point *Centre)
+{
+	Graphics G;
+	glColor3f(0, 1, 0);
+	G.drawpoint(this->x, this->y);
+	G.setcolor(1.0, 0.0, 0.0);
+	G.displaychar(this->x - (Centre->getx() / 100) * 6, this->y - (Centre->gety() / 100) * 6, this->name);
+	G.setcolor(0, 1, 0);
+}
+void Point::showCircledPoint(Point *Centre)
+{
+	Graphics G;
+	glPointSize(5);
+	G.drawpoint(this->x, this->y);
+	G.setcolor(1.0, 0.0, 1.0);
+	G.drawcircle(this->x, this->y, (Centre->getx() / 100) * 2);
+	glPointSize(5);
+	G.setcolor(1.0, 0.0, 0.0);
+	G.displaychar(this->x - (Centre->getx() / 100) * 6, this->y - (Centre->gety() / 100) * 6, this->name);
+	G.setcolor(0, 1, 0);
 }
 
 void Point::save(ofstream& o,string filename)
 {
-	o.write((char*)&this->x, sizeof(this->x));
-	o.write((char*)&this->y, sizeof(this->y));
+	//o.write((char*)&this->x, sizeof(this->x));
+	//o.write((char*)&this->y, sizeof(this->y));
+	
+	o << this->name;
+	o << endl;
+	o << this->x;
+	o << endl;
+	o << this->y;
+	o << endl;
+}
+
+Point Point::readfromfile(ifstream & i)
+{
+	
+	Point P;
+	/*
+	int Store;
+	i.read((char*)&Store, sizeof(Store));
+	P.setx(Store);
+	i.read((char*)&Store, sizeof(Store));
+	P.sety(Store);
+	*/
+	return P;
 }
 
 void Point::operator=(Point& P)
@@ -80,18 +131,60 @@ Point Point::operator+=(int add)
 }
 ostream & operator<<(ostream & o, Point& P)
 {
-	return o << "Point "<<P.name<<endl<<"X is ="<<P.x-100<<endl << "Y is =" << P.y-100;
+	return o << "Point "<<P.name<<endl<<"X is ="<<P.x<<endl << "Y is =" << P.y;
 }
 istream& operator>>(istream & in, Point &P)
 {
 	cout<< "                        X Coordinate:";
 	in >> P.x;
-	P.x += 100;
+	//P.x += 100;
 	cout<<"                        Y Coordinate:";
 	in >> P.y;
 	cout << endl;
-	P.y += 100;
+	//P.y += 100;
 	return in;
+}
+
+Point operator+=(Point& O, Point& X)
+{
+	O.x += X.x;
+	O.y += X.y;
+	return O;
+}
+bool operator<(Point & O, Point & P)
+{
+	if (O.x < P.x)
+		return true;
+	else
+		return false;
+}
+bool operator>(Point & O, Point & P)
+{
+	if (O.x > P.x)
+		return true;
+	else
+		return false;
+}
+bool operator<=(Point & O, Point & P)
+{
+	if (O.x <= P.x)
+		return true;
+	else
+		return false;
+}
+bool operator>=(Point & O, Point & P)
+{
+	if (O.x >= P.x)
+		return true;
+	else
+		return false;
+}
+bool operator==(Point & O, Point & P)
+{
+	if (O.x == P.x && O.y == P.y)
+		return true;
+	else
+		return false;
 }
 void Point::deletePoint()
 {
@@ -100,5 +193,9 @@ void Point::deletePoint()
 }
 Point::~Point()
 {
+}
+int myrandom(int m) 
+{
+	return rand() % m;
 }
 

@@ -18,7 +18,8 @@ public:
 	void setArray(Point *Array);
 	void addpoint(Point P, Point Q, Point R, Point S);
 	void addpoint(Point P);
-	void show();
+	void show(Point *Centre);
+	void showCircledPoints(Point* Centre);
     void save(ofstream& o,string filename);
 	void deletePointArray();
 	void deletePoint(int j);

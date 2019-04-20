@@ -14,9 +14,14 @@ public:
 
 	void setcolor(int r, int g, int b);
 	void setline_width(int width);
-	void drawline(int x1,int y1,int x2,int y2);
-	void drawcircle(int c, int r);
-	void drawpoint(int x, int y);
+	void drawline(float x1, float y1, float x2, float y2);
+	void drawcircle(float cx, float cy, float r);
+	void drawpoint(float x, float y);
+	void drawrectangle(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4);
+	void displaystring(float x, float y, string text, void* font);
+	void displaychar(float x, float y, char text);
+	void Colourfulrectangle(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4);
+
 	~Graphics();
 
 private:

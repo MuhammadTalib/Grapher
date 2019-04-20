@@ -1,37 +1,48 @@
 #pragma once
 #include"Point.h"
 #include "Polygon.h"
+#include<iostream>
+#include<fstream>
 Polygon::Polygon():Shape()
 {
 }
-void Polygon::work()
+void Polygon::work(Point& Centre)
 {
+	int name = 65;
 	char status = 'y';
-	Point P;
-	Point Q;
-	Point R(36, 54);
-	Point S(35, 35);
+	Point *P=new Point;
+	Point *Q = new Point;
 	int i = 1;
 	cout << "|                        Enter Point " << i << "                         |" << endl;
 	i++;
-	cin >> P;
-	this->Points_Array.addpoint(P);
+	cin >> *P;
+	*P += Centre;
+	P->setname(name);
+	name++;
+	this->PointsTree->insert(P);
 
 	cout << "|                        Enter Point " << i << "                         |" << endl;
 	i++;
-	cin >> Q;
-	this->Points_Array.addpoint(Q);
-	StraightLine T(P, Q);
-	this->Line_Array.addline(T);
+	cin >> *Q;
+	*Q += Centre;
+	Q->setname(name);
+	name++;
+	this->PointsTree->insert(Q);
+	StraightLine *T=new StraightLine(*P, *Q);
+	this->LinesTree->insert(T);
 	P = Q;
 	do
 	{
+		Q = new Point;
 		cout << "|                        Enter Point " << i << "                         |"<<endl;
 		i++;
-		cin >> Q;
-		this->Points_Array.addpoint(Q);
-		StraightLine S(P, Q);
-		this->Line_Array.addline(S);
+		cin >> *Q;
+		*Q += Centre;
+		Q->setname(name);
+		name++;
+		this->PointsTree->insert(Q);
+		StraightLine *S=new StraightLine(*P, *Q);
+		this->LinesTree->insert(S);
 		P = Q;
 
 		cout << "|                  1:Enter More Points(Y/N)";
@@ -41,22 +52,35 @@ void Polygon::work()
 	} while (status == 'y' || status == 'Y');
 
 
-	Point U = (Point&)this->getpointfromPoint_Array(0);
-	Point V= (Point&)this->getpointfromPoint_Array(this->Points_Array.getcount() - 1);
-	StraightLine M(U, V);
+	Point *U = this->getpointsTree()->getFirstNode();
+	Point *V= this->getpointsTree()->getLastNode();
+	StraightLine M(*U, *V);
 	this->line = M;
-	
-	this->Line_Array.addline(M);
-	cout << this->Line_Array;
 
 }
 
-void Polygon::show()
+void Polygon::setline(StraightLine & line)
 {
-	this->line.show();
-	this->Shape::show();
+	this->line = line;
 }
 
+void Polygon::show(Point* Centre)
+{
+	glPointSize(6);
+	this->line.show();
+	this->PointsTree->showWithCircle(Centre);
+	this->LinesTree->show();
+
+}
+
+void Polygon::save(ofstream& o, string filename)
+{
+	o << "Polygon";
+	o << endl;
+	//this->Points_Array.save(o, filename);
+	o << "End";
+	o << endl;
+}
 Polygon::~Polygon()
 {
 }

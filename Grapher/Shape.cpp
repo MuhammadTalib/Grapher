@@ -11,38 +11,43 @@ Shape::Shape(Shape & P)
 {
 	this->total =P.total;
 	this->count = P.count;
-	this->Points_Array = P.Points_Array;
-	this->Line_Array = P.Line_Array;
+	this->PointsTree = P.PointsTree;
+	this->LinesTree = P.LinesTree;
 }
-void Shape::setPointinPointArray(Point & P)
+void Shape::setPointinPointTree(Point * P)
 {
-	this->Points_Array.addpoint(P);
+	this->PointsTree->insert(P);
 }
-void Shape::setLineinLineArray(StraightLine & S)
+void Shape::setLineinLineArray(StraightLine * S)
 {
-	this->Line_Array.addline(S);
+	this->LinesTree->insert(S);
 }
-void Shape::work()
+void Shape::work(Point& Centre)
 {
-
+	int name = 65;
 	char status = 'y';
-	Point P;
-	Point Q;
-	Point R(36, 54);
-	Point S(35, 35);
+	Point *P=new Point;
+	Point *Q=new Point;
 	int i = 1;
 	cout << "|                        Enter Point " << i << "                         |" << endl;
 	i++;
-	cin >> P;
-	this->Points_Array.addpoint(P);
+	cin >> *P;
+	*P += Centre;
+	P->setname(name);
+	name++;
+	this->PointsTree->insert(P);
 	do
 	{
+		Q = new Point;
 		cout << "|                        Enter Point " << i << "                         |"<<endl;
 		i++;
-		cin >> Q;
-		this->Points_Array.addpoint(Q);
-		StraightLine S(P, Q);
-		this->Line_Array.addline(S);
+		cin >> *Q;
+		*Q += Centre;
+		Q->setname(name);
+		name++;
+		this->PointsTree->insert(Q);
+		StraightLine *S=new StraightLine(*P, *Q);
+		this->LinesTree->insert(S);
 		P = Q;
 
 		cout << "|                  1:Enter More Points(Y/N)";
@@ -52,48 +57,67 @@ void Shape::work()
 	} while (status == 'y' || status == 'Y');
 	
 }
-void Shape::show()
+void Shape::show(Point *Centre)
 {
-	this->Points_Array.show();
-	this->Line_Array.show();
+	glPointSize(6);
+	this->PointsTree->show(Centre);
+	this->LinesTree->show();
+	
 }
 
+void Shape::setline(StraightLine & L)
+{
+}
+/*
 void Shape::save(ofstream& o, string filename)
 {
-	this->Line_Array.save(o, filename);
+	o << "Shape";
+	o << endl;
+	this->Points_Array.save(o, filename);
+	o << "End";
+	o << endl;
+}
+
+Point Shape::getpoint(int index)
+{
+	Point P =this->PointsTree.getindexpoint(index);
+	return P;
+}
+}*/
+
+AVLTree<Point>* Shape::getpointsTree()
+{
+	return this->PointsTree;
+}
+
+AVLTree<StraightLine>* Shape::getLinesTree()
+{
+	return this->LinesTree;
 }
 
 Shape& Shape::operator=(Shape & P)
 {
 	this->total = P.total;
 	this->count = P.count;
-	this->Points_Array = P.Points_Array;
-	this->Line_Array = P.Line_Array;
+	this->PointsTree = P.PointsTree;
+	this->LinesTree = P.LinesTree;
 	return *this;
 }
 
 Shape Shape::operator+=(int add)
 {
 
-	this->Points_Array += add;
-	this->Line_Array += add;
+	this->PointsTree += add;
+	this->LinesTree += add;
 	return *this;
 }
 
-
-Point Shape::getpointfromPoint_Array(int x)
-{
-	Point P;
-	P =(Point&)this->Points_Array.getindexpoint(x);
-	return P;
-
-}
 void Shape::deleteShape()
 {
-	this->Line_Array.deleteLineArray();
-	this->Points_Array.deletePointArray();
+	this->LinesTree->deleteTree();
+	this->PointsTree->deleteTree();
 }
-
+/*
 void Shape::deleteLine(int j)
 {
 	this->Line_Array.deleteLine(j);
@@ -118,5 +142,5 @@ void Shape::deletePoint(int j)
 		S.show();
 	}
 }
-
+*/
 

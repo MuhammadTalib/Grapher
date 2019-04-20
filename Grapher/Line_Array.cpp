@@ -159,6 +159,14 @@ void Line_Array::deleteLineArray()
 		this->Array[i].deleteLine();
 	}
 }
+Line_Array Line_Array::readfromfile(ifstream & i)
+{
+	
+	StraightLine S;
+	Line_Array L;
+	L.addline(S.readfromfile(i));
+	return L;
+}
 
 void Line_Array::deleteLine(int j)
 {

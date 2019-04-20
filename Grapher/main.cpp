@@ -1,5 +1,7 @@
 #include<iostream>
 using namespace std;
+#include"DeclareSTL.h"
+#include<stdlib.h>
 #include<string>
 #include <fstream>
 #include"Graphics.h"
@@ -11,12 +13,11 @@ using namespace std;
 #include"Grapher.h"
 int main(int argc, char **argv)
 {
+	system("color 3a");
 	glutInit(&argc, argv);
 	Grapher G;
-	glFlush();
-
-	glutMainLoop();
 	cout << endl;
+	cout << "Alaadin";
 	system("pause");
 	return 0;
 }

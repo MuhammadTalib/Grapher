@@ -14,10 +14,18 @@ public:
 	void set(Point& p, Point& q);
 	void show();
 	void save(ofstream& o,string filename);
+	StraightLine readfromfile(ifstream & i);
 	void deleteLine();
 
 	friend ostream& operator <<(ostream& o, StraightLine& S);
 	friend istream& operator >>(istream& o, StraightLine& S);
+
+	friend bool operator >(StraightLine & P, StraightLine& S);
+	friend bool operator <(StraightLine & P, StraightLine& S);
+	friend bool operator >=(StraightLine & P, StraightLine& S);
+	friend bool operator <=(StraightLine & P, StraightLine& S);
+	friend bool operator ==(StraightLine& P, StraightLine& S);
+
 	StraightLine operator = (StraightLine& S);
 	StraightLine operator += (int add);
 

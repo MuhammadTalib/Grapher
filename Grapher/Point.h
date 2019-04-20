@@ -4,29 +4,39 @@ class Point
 {
 public:
 	Point();
-	Point(int x, int y);
-	Point(string name, int x, int y);
+	Point(float x, float y);
+	Point(char name, float x, float y);
 	Point(const Point& P);
 
-	int getx();
-	int gety();
-	void set(int x,int y);
-	void setx(int x);
-	void sety(int y);
+	float getx();
+	float gety();
+	void set(float x, float y);
+	void setx(float x);
+	void sety(float y);
+	void setname(char name);
+	void show(Point *Centre);
 	void show();
+	void showCircledPoint(Point *Centre);
 	void save(ofstream& o,string filename);
+	Point readfromfile(ifstream& i);
 	void deletePoint();
 
 	friend ostream& operator <<(ostream& o,Point& P);
 	friend istream& operator >>(istream& in, Point& P);
+	friend Point operator +=(Point& O,Point& X);
+	friend bool operator <(Point& O, Point& P);
+	friend bool operator >(Point& O, Point& P);
+	friend bool operator <=(Point& O, Point& P);
+	friend bool operator >=(Point& O, Point& P);
+	friend bool operator ==(Point& O, Point& P);
 
 	void operator = (Point& P);
 	Point operator += (int add);
 
 	~Point();
 private:
-	int x;
-	int y;
-	string name;
+	float x;
+	float y;
+	char name;
 };
 

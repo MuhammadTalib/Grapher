@@ -42,7 +42,6 @@ int Point_Array::getcount()
 
 Point Point_Array::getindexpoint(int index)
 {
-	
 	return this->Array[index];
 }
 
@@ -93,11 +92,19 @@ void Point_Array::addpoint(Point P, Point Q, Point R, Point S)
 	this->addpoint(R);
 	this->addpoint(S);
 }
-void Point_Array::show()
+void Point_Array::show(Point *Centre)
 {
 	for (int i=0; i < this->count; i++)
 	{
-		this->Array[i].show();
+		this->Array[i].show(Centre);
+	}
+}
+
+void Point_Array::showCircledPoints(Point* Centre)
+{
+	for (int i = 0; i < this->count; i++)
+	{
+		this->Array[i].showCircledPoint(Centre);
 	}
 }
 void Point_Array::save(ofstream& o,string filename)

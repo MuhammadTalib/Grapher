@@ -1,4 +1,5 @@
 #pragma once
+#include<stdlib.h>
 #include"Graphics.h"
 #include"StraightLine.h"
 class Line_Array
@@ -20,6 +21,7 @@ public:
 	void save(ofstream& o,string filename);
 	void deleteLineArray();
 	void deleteLine(int j);
+	Line_Array readfromfile(ifstream & i);
 
 	friend ostream& operator <<(ostream& o, Line_Array& P);
 	friend istream& operator >>(istream& in, Line_Array& P);

@@ -1,4 +1,5 @@
 #pragma once
+#include"DeclareSTL.h"
 #include"Point.h"
 #include"Point_Array.h"
 #include"StraightLine.h"
@@ -8,14 +9,18 @@ public:
 	Shape();
 	Shape(Shape& P);
 
-	void setPointinPointArray(Point &P);
-	void setLineinLineArray(StraightLine &S);
-	virtual void work();
-	virtual void show();
-	void save(ofstream& o, string filename);
+	void setPointinPointTree(Point *P);
+	void setLineinLineArray(StraightLine *S);
+	virtual void work(Point &Centre);
+	virtual void show(Point *Centre);
+	virtual void setline(StraightLine &L);
+	//virtual void save(ofstream& o, string filename);
+	//Point getpoint(int index);
+	AVLTree<Point>* getpointsTree();
+	AVLTree<StraightLine>* getLinesTree();
 	void deleteShape();
-	void deleteLine(int j);
-	void deletePoint(int j);
+	//void deleteLine(int j);
+	//void deletePoint(int j);
 
 	Shape& operator = (Shape& P);
 	Shape operator +=(int add);
@@ -25,7 +30,6 @@ private:
 	int count;
 	
 protected:
-	Point_Array Points_Array;
-	Line_Array Line_Array;
-	Point getpointfromPoint_Array(int x);
+	AVLTree<Point> *PointsTree=new AVLTree<Point>;
+	AVLTree<StraightLine> *LinesTree = new AVLTree<StraightLine>;
 };

@@ -97,7 +97,57 @@ void StraightLine::deleteLine()
 	this->endpoint.deletePoint();
 	this->startpoint.deletePoint();
 }
-
+StraightLine StraightLine::readfromfile(ifstream & i)
+{
+	Point P;
+	StraightLine S(P.readfromfile(i),P.readfromfile(i));
+	return S;
+}
+bool operator>(StraightLine & P, StraightLine & S)
+{
+	if (P.startpoint > S.startpoint)
+	{
+		return true;
+	}
+	else
+		return false;
+}
+bool operator<(StraightLine & P, StraightLine & S)
+{
+	if (P.startpoint < S.startpoint)
+	{
+		return true;
+	}
+	else
+		return false;
+}
+bool operator>=(StraightLine & P, StraightLine & S)
+{
+	if (P.startpoint >= S.startpoint)
+	{
+		return true;
+	}
+	else
+		return false;
+}
+bool operator<=(StraightLine & P, StraightLine & S)
+{
+	if (P.startpoint <= S.startpoint)
+	{
+		return true;
+	}
+	else
+		return false;
+}
+bool operator==(StraightLine & P, StraightLine & S)
+{
+	if (P.startpoint == S.startpoint && P.endpoint == S.endpoint)
+	{
+		return true;
+	}
+	else
+		return false;
+}
 StraightLine::~StraightLine()
 {
 }

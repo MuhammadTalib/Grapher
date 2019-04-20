@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{C322405A-6EA5-490C-9AAD-A643DB4DE3AA}</ProjectGuid>
     <RootNamespace>Grapher</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -115,6 +115,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AVLTree.cpp" />
+    <ClCompile Include="BinaryTree.cpp" />
+    <ClCompile Include="Coordinate_System.cpp" />
+    <ClCompile Include="Curve.cpp" />
+    <ClCompile Include="ExpressionTree.cpp" />
+    <ClCompile Include="LinkedList.cpp" />
+    <ClCompile Include="Queue.cpp" />
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="Grapher.cpp" />
     <ClCompile Include="Graphics.cpp" />
@@ -124,10 +131,17 @@
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="Point_Array.cpp" />
     <ClCompile Include="Polygon.cpp" />
-    <ClCompile Include="Coordinate_System.cpp" />
+    <ClCompile Include="Stack.cpp" />
     <ClCompile Include="StraightLine.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AVLTree.h" />
+    <ClInclude Include="BinaryTree.h" />
+    <ClInclude Include="Curve.h" />
+    <ClInclude Include="DeclareSTL.h" />
+    <ClInclude Include="ExpressionTree.h" />
+    <ClInclude Include="LinkedList.h" />
+    <ClInclude Include="Queue.h" />
     <ClInclude Include="Shape.h" />
     <ClInclude Include="Grapher.h" />
     <ClInclude Include="Graphics.h" />
@@ -137,6 +151,7 @@
     <ClInclude Include="Point_Array.h" />
     <ClInclude Include="Polygon.h" />
     <ClInclude Include="Coordinate_System.h" />
+    <ClInclude Include="Stack.h" />
     <ClInclude Include="StraightLine.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

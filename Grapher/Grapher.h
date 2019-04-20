@@ -11,7 +11,7 @@ private:
 	void UserInput();
 	void FileInput();
 	Shape_Array ShapeArray;
-	Coordinate_System Graph_Sheet;
+	Coordinate_System *Graph_Sheet;
 	Line_Array BorderLines;
 protected:
 };
